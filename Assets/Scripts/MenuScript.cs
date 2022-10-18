@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class MenuScript : MonoBehaviour
 {
     private static bool isGamePaused = false;
+    private static CursorLockMode originalCursorMode;
     public static bool IsGamePaused => isGamePaused;
 
     public void LoadLevelByName(string levelName)
@@ -24,12 +25,15 @@ public class MenuScript : MonoBehaviour
     public void PauseGame()
     {
         Time.timeScale = 0;
+        originalCursorMode = Cursor.lockState;
+        Cursor.lockState = CursorLockMode.None;
         isGamePaused = true;
     }
 
     public void UnpauseGame()
     {
         Time.timeScale = 1;
+        Cursor.lockState = originalCursorMode;
         isGamePaused = false;
     }
 
