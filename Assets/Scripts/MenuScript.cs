@@ -7,18 +7,27 @@ public class MenuScript : MonoBehaviour
     private static CursorLockMode originalCursorMode;
     public static bool IsGamePaused => isGamePaused;
 
+    public void ToggleGameObjectActive(GameObject gameObj)
+    {
+        // Set active to the opposite of what it is currently.
+        gameObj.SetActive(!gameObj.activeSelf);
+    }
+
     public void LoadLevelByName(string levelName)
     {
+        UnpauseGame();
         SceneManager.LoadScene(levelName);
     }
 
     public void LoadLevelByIndex(int buildIndex)
     {
+        UnpauseGame();
         SceneManager.LoadScene(buildIndex);
     }
 
     public void ReloadCurrentLevel()
     {
+        UnpauseGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
