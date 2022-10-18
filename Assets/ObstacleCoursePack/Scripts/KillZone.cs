@@ -9,7 +9,8 @@ public class KillZone : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-			col.gameObject.GetComponent<CharacterControls>().LoadCheckPoint();
-		}
-	}
+            var charController = col.gameObject.GetComponent<CharacterControls>();
+            if (charController != null) charController.LoadCheckPoint();
+        }
+    }
 }
